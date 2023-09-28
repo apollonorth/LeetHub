@@ -10,27 +10,27 @@
  */
 class Solution {
     public ListNode deleteMiddle(ListNode head) {
-        int length = 0;
-        ListNode current = new ListNode(head.val, head.next);
-        while(current.next != null) {
-            length++;
-            current = current.next;
-        }
-        current = head;
-        if(length < 1) 
+        if (head == null || head.next == null) {
+            // Empty list or list with only one element, nothing to delete
             return null;
-    
-        if(length % 2 == 0) {
-            for(int i = 0; i < length/2 - 1; i++) {
-                current = current.next;
-            }
         }
-        else {
-            for(int i = 0; i < length/2; i++) {
-                current = current.next;
-            }
+        
+        ListNode slow = head;
+        ListNode fast = head;
+        ListNode prev = null;
+        
+        // Move 'fast' two steps and 'slow' one step at a time until 'fast' reaches the end
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            prev = slow;
+            slow = slow.next;
         }
-        current.next = current.next.next;
+        
+        // Now 'slow' is at the middle node, 'prev' is before it
+        // Delete the middle node by updating 'prev.next' to 'slow.next'
+        prev.next = slow.next;
+        
         return head;
     }
 }
+
