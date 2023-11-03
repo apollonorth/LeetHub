@@ -1,6 +1,6 @@
 class Solution {
     public String gcdOfStrings(String str1, String str2) {
-        if(str1 == null || str2 == null ||                          !str1.concat(str2).equals(str2.concat(str1)))
+        if(str1 == null || str2 == null || !str1.concat(str2).equals(str2.concat(str1)))
             return "";
         
         return str1.substring(0, gcd(str1.length(), str2.length()));
