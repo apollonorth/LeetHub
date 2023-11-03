@@ -3,7 +3,7 @@ class Solution {
         if(str1 == null || str2 == null ||                          !str1.concat(str2).equals(str2.concat(str1)))
             return "";
         
-        return str1.concat(str2).substring(0, gcd(str1.length(), str2.length()));
+        return str1.substring(0, gcd(str1.length(), str2.length()));
     }
     
     private int gcd(int a, int b) {
