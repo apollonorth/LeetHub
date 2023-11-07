@@ -2,31 +2,27 @@ class Solution {
     public List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
         
         List<List<Integer>> outputList = new ArrayList<>();
-        outputList.add(new ArrayList<>());
-        outputList.add(new ArrayList<>());
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> set2 = new HashSet<>();
+        Set<Integer> set3 = new HashSet<>();
         
-        Integer[] nums1Arr = new Integer[nums1.length];
-        int i = 0;
-        for (int value : nums1) {
-            nums1Arr[i++] = Integer.valueOf(value);
-        }
-        Integer[] nums2Arr = new Integer[nums2.length];
-        int j = 0;
-        for (int value : nums2) {
-            nums2Arr[j++] = Integer.valueOf(value);
-        }
-        List<Integer> nums1List = Arrays.asList(nums1Arr);
-        List<Integer> nums2List = Arrays.asList(nums2Arr);
-        for(int elm: nums1) {
-            if(!nums2List.contains(elm) && !outputList.get(0).contains(elm))
-                outputList.get(0).add(elm);
+        for(int nums: nums1) {
+            set1.add(nums);
         }
         
-         for(int elm: nums2) {
-            if(!nums1List.contains(elm) && !outputList.get(1).contains(elm))
-                outputList.get(1).add(elm);
+        for(int nums: nums2) {
+            set3.add(nums);
         }
         
+        for(int nums: nums2) {
+            if(!set1.contains(nums))
+                set2.add(nums);
+        }
+        
+        set1.removeAll(set3);
+        
+        outputList.add(new ArrayList<>(set1));
+        outputList.add(new ArrayList<>(set2));
         return outputList;
     }
 }
