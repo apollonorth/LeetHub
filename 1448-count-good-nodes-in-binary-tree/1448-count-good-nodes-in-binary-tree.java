@@ -15,7 +15,6 @@
  */
 class Solution {
     
-    public static int count = 0;
     public int goodNodes(TreeNode root) {
         
         return dfs(root, Integer.MIN_VALUE);
@@ -25,7 +24,7 @@ class Solution {
         if(current == null) {
             return 0;
         }
-        count = 0;
+        int count = 0;
         
         if(current.val >= maxVal) {
             count++;
